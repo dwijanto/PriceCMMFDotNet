@@ -26,13 +26,24 @@ Public Class CMMFModel
         End Get
     End Property
 
+    Public Function SyncFamilyId() As Long
+        Dim sqlstr = "update pccmmf set familyid =  foo.comfam from (select comfam,cmmf from cmmf where not comfam isnull) foo where pccmmf.cmmf = foo.cmmf; " &
+                     "update pcproject set familyid = foo.familyid from " &
+                     "(select pp.pcprojectid,pc.familyid from pccmmf pc " &
+                     " left join pcrange pr on pr.pcrangeid = pc.pcrangeid" &
+                     " left join pcproject pp on pp.pcprojectid = pr.pcprojectid " &
+                     " where not pp.pcprojectid isnull and not pc.familyid isnull ) foo " &
+                     " where pcproject.pcprojectid = foo.pcprojectid;"
+        Return DataAccess.ExecuteNonQuery(sqlstr, CommandType.Text)
+    End Function
+
     Private Function GetSqlstr(ByVal criteria) As String
-        Dim sb As New StringBuilder
-        sb.Append(String.Format("SELECT  r.pcprojectid,p.projectname::text, c.cmmf, c.materialcode::text, ssm.ofsebid as ssmid,spm.ofsebid as spmid,ssm.officersebname::text AS ssm, spm.officersebname::text AS spm,sbu.sbuname,sbu.sbuid," &
-               " c.familyid,f.familyname, c.pcrangeid,  r.rangename, NULL::unknown AS picture,  c.description,c.brandid, b.brandname, c.countries, c.voltage, c.power, " &
-               " c.leadtime, c.qty20, c.qty40, c.qty40hq, c.moq,l.loadingid, l.loadingname,c.pgid, pg.typeofitem, c.netprice,  c.contractno, c.length," &
+        Dim sb As New StringBuilder 
+        sb.Append(String.Format("SELECT  r.pcprojectid,p.projectname::text, c.cmmf, c.materialcode::text, ssm.ofsebid as ssmid,spm.ofsebid as spmid,ssm.officersebname::text AS ssm, spm.officersebname::text AS spm,sbu.sbuname::text,sbu.sbuid," &
+               " c.familyid,f.familyname::text, c.pcrangeid,  r.rangename::text, NULL::unknown AS picture,  c.description::text,c.brandid, b.brandname::text, c.countries::text, c.voltage, c.power, " &
+               " c.leadtime, c.qty20, c.qty40, c.qty40hq, c.moq,c.loadingcode::text, l.loadingname,c.pgid, pg.typeofitem, c.netprice,  c.contractno, c.length," &
                " c.width, c.height, c.lengthbox, c.widthbox, c.heightbox, c.weightwo, c.weightwi, c.nettweight,c.grossweight, remarks," &
-               " c.sppet,c.stcseb,c.stcsup,c.srdc,c.eol,c.pcspercartoon,c.spps FROM pccmmf c " &
+               " c.sppet,c.stcseb,c.stcsup,c.srdc,c.eol,c.pcspercartoon,c.spps, c.amort, l.loadinggroup,spm.mrpcontrollercode,pg.purchasinggroup FROM pccmmf c " &
                " LEFT JOIN pcrange r ON r.pcrangeid = c.pcrangeid " &
                " LEFT JOIN pcproject p ON p.pcprojectid = r.pcprojectid " &
                " LEFT JOIN family f ON f.familyid = c.familyid " &
@@ -41,17 +52,17 @@ Public Class CMMFModel
                " LEFT JOIN officerseb spm ON spm.ofsebid = p.spmid" &
                " LEFT JOIN brand b ON b.brandid = c.brandid" &
                " LEFT JOIN loading l ON l.loadingcode = c.loadingcode" &
-               " LEFT JOIN purchasinggroup pg ON pg.pgid = c.pgid {0};", criteria))
+               " LEFT JOIN purchasinggroup pg ON pg.pgid = c.pgid {0} order by c.cmmf;", criteria))
         sb.Append("select '--Select From List--' as sbuname,0 as sbuid union all (Select s.sbuname::text,s.sbuid from sbu  s where pcmmf order by s.sbuname);")                                                                         'SBU
         sb.Append("select '--Select From List--' as familyname,0 as familyid,0 as sbuid,'--Select From List--'::text as sbuname union all (Select distinct f.familyname::text,f.familyid,f.sbuid,s.sbuname::text from family f left join sbu s on s.sbuid = f.sbuid  where s.pcmmf order by f.familyname::text);")                                  'Family
-        sb.Append("select '--Select From List--' as ssmname,0 as ssmid union all (Select o.officersebname::text,o.ofsebid from officerseb o where o.parent = 0 and teamtitleid <> 18  order by o.officersebname);")                                   'SSM
+        sb.Append("select '--Select From List--' as ssmname,0 as ssmid union all (Select o.officersebname::text,o.ofsebid from officerseb o where o.parent = 0 and teamtitleid <> 18  and o.isactive order by o.officersebname);")                                   'SSM
         sb.Append("select '--Select From List--' as ssmname,0 as ssmid,'--Select From List--' as pmname,0 as pmid union all (Select o.officersebname::text,o.ofsebid, p.officersebname::text,p.ofsebid from officerseb o left join officerseb p on p.parent = o.ofsebid where o.parent = 0 and not p.ofsebid isnull and o.isactive order by o.officersebname);")    'SPM
         sb.Append("select '--Select From List / Type for new--' as projectname,0 as pcprojectid union all (select p.projectname::text,p.pcprojectid from pcproject p  order by p.projectname);")
         sb.Append("select '--Select From List / Type for new--' as rangename,0 as pcrangeid,0 as pcprojectid  union all (select r.rangename::text,r.pcrangeid,r.pcprojectid from pcrange r  order by  r.rangename);")
 
         sb.Append("select '--Select From List--' as brandname,0 as brandid union all (Select brandname::text ,brandid from brand order by brandname);")
-        sb.Append("select '--Select From List--' as loadingname,0 as loadingid union all (Select loadingname::text,loadingid from loading where not loadinggroup isnull order by loadingname);")
-        sb.Append("select '--Select From List--' as typeofitem,0 as pgid union all (Select typeofitem::text,pgid from purchasinggroup where pccmmf order by typeofitem::text);")
+        sb.Append("select '--Select From List--' as loadingname,null::text as loadingcode,null as loadinggroup union all (Select loadingname::text,loadingcode,loadinggroup from loading where not loadinggroup isnull order by loadingname);")
+        sb.Append("select '--Select From List--' as typeofitem,null::integer as pgid,null::text as purchasinggroup union all (Select typeofitem::text,pgid,purchasinggroup from purchasinggroup where pccmmf order by typeofitem::text);")
         sb.Append("select pp.projectname::text,pr.rangename::text,ssm.officersebname as ssm,spm.officersebname as spm, pp.pcprojectid,pr.pcrangeid,pp.ssmid,pp.spmid from pcproject pp" &
                   " left join officerseb ssm on ssm.ofsebid = pp.ssmid left join officerseb spm on spm.ofsebid = pp.spmid left join pcrange pr on pr.pcprojectid = pp.pcprojectid" &
                   " where  not( rangename isnull and projectname isnull) order by projectname,ssmid,spmid,pcprojectid") 'Project Helper
@@ -82,8 +93,6 @@ Public Class CMMFModel
         DS = DataAccess.GetDataSet(sqlstr, CommandType.Text, Nothing)
         DS.Tables(0).TableName = TableName
 
-
-
         Return True
     End Function
 
@@ -94,9 +103,22 @@ Public Class CMMFModel
         Dim rel As DataRelation
         Dim hcol As DataColumn
         Dim dcol As DataColumn
-        'create relation Project and Pc Range
+
+        'create relation PCCMMF with PCRange
+        hcol = DS.Tables(6).Columns("pcrangeid") 'id in table header
+        dcol = DS.Tables(0).Columns("pcrangeid") 'headerid in table vendordoc
+        rel = New DataRelation("hdrel-PCRange", hcol, dcol)
+        DS.Relations.Add(rel)
+
+        'Create relation PCCMMF with PCProject
         hcol = DS.Tables(5).Columns("pcprojectid") 'id in table header
-        dcol = DS.Tables(6).Columns("pcprojectid") 'headerid in table vendordoc
+        dcol = DS.Tables(0).Columns("pcprojectid") 'headerid in table vendordoc
+        rel = New DataRelation("hdrel-PCProject", hcol, dcol)
+        DS.Relations.Add(rel)
+
+        'create relation Project and Pc Range
+        hcol = DS.Tables(5).Columns("pcprojectid") 'PCProject
+        dcol = DS.Tables(6).Columns("pcprojectid") 'PCRange
         rel = New DataRelation("hdrel", hcol, dcol)
         DS.Relations.Add(rel)
 
@@ -106,19 +128,24 @@ Public Class CMMFModel
         rel = New DataRelation("hdrel-SBU", hcol, dcol)
         DS.Relations.Add(rel)
 
-        'create relation PCCMMF with PCRange
-        hcol = DS.Tables(6).Columns("pcrangeid") 'id in table header
-        dcol = DS.Tables(0).Columns("pcrangeid") 'headerid in table vendordoc
-        rel = New DataRelation("hdrel-PCRange", hcol, dcol)
+        'create relation SSM PM
+        hcol = DS.Tables(3).Columns("ssmid") 'id in table header
+        dcol = DS.Tables(4).Columns("ssmid") 'headerid in table vendordoc
+        rel = New DataRelation("hdrel-SSM", hcol, dcol)
         DS.Relations.Add(rel)
 
-        'create relation SSM SPM
-        'hcol = DS.Tables(3).Columns("ssmid") 'id in table header
-        'dcol = DS.Tables(4).Columns("ssmid") 'headerid in table vendordoc
-        'rel = New DataRelation("hdrel-SSM", hcol, dcol)
-        'DS.Relations.Add(rel)
-
         Return True
+    End Function
+
+    Public Function getVendorTable() As DataTable
+        Dim ds As New DataSet
+        Dim sb As New StringBuilder
+        sb.Append("Select distinct vendorname::text,v.vendorcode , v.vendorcode::text || ' - ' || v.vendorname::text as vendorcodename from pricelist pc" &
+                  " left join vendor v on v.vendorcode = pc.vendorcode" &
+                  " Union select vendorname::text,v.vendorcode,v.vendorcode::text || ' - ' || v.vendorname::text  from vendor v order by vendorname;")
+
+        ds = DataAccess.GetDataSet(sb.ToString, CommandType.Text, Nothing)
+        Return ds.Tables(0)
     End Function
 
     Public Function GetPriceList(ByVal criteria As String) As Boolean
@@ -258,6 +285,9 @@ Public Class CMMFModel
             dataadapter.UpdateCommand.Parameters.Add(factory.CreateParameter("", DbType.Int64, 0, "familyid", DataRowVersion.Current))
             dataadapter.UpdateCommand.Parameters.Add(factory.CreateParameter("", DbType.Int32, 0, "pcspercartoon", DataRowVersion.Current))
             dataadapter.UpdateCommand.Parameters.Add(factory.CreateParameter("", DbType.Decimal, 0, "spps", DataRowVersion.Current))
+            dataadapter.UpdateCommand.Parameters.Add(factory.CreateParameter("", DbType.Int64, 0, "pcprojectid", DataRowVersion.Current))
+            dataadapter.UpdateCommand.Parameters.Add(factory.CreateParameter("", DbType.Int32, 0, "ssmid", DataRowVersion.Current))
+            dataadapter.UpdateCommand.Parameters.Add(factory.CreateParameter("", DbType.Int32, 0, "spmid", DataRowVersion.Current))
 
             dataadapter.UpdateCommand.CommandType = CommandType.StoredProcedure
 
@@ -303,6 +333,9 @@ Public Class CMMFModel
             dataadapter.InsertCommand.Parameters.Add(factory.CreateParameter("", DbType.Int64, 0, "familyid", DataRowVersion.Current))
             dataadapter.InsertCommand.Parameters.Add(factory.CreateParameter("", DbType.Int32, 0, "pcspercartoon", DataRowVersion.Current))
             dataadapter.InsertCommand.Parameters.Add(factory.CreateParameter("", DbType.Decimal, 0, "spps", DataRowVersion.Current))
+            dataadapter.InsertCommand.Parameters.Add(factory.CreateParameter("", DbType.Int64, 0, "pcprojectid", DataRowVersion.Current))
+            dataadapter.InsertCommand.Parameters.Add(factory.CreateParameter("", DbType.Int32, 0, "ssmid", DataRowVersion.Current))
+            dataadapter.InsertCommand.Parameters.Add(factory.CreateParameter("", DbType.Int32, 0, "spmid", DataRowVersion.Current))
             dataadapter.InsertCommand.Parameters.Add(factory.CreateParameter("", DbType.Int64, 0, "cmmf", ParameterDirection.InputOutput))
             dataadapter.InsertCommand.CommandType = CommandType.StoredProcedure
 

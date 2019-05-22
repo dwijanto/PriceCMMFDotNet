@@ -124,7 +124,7 @@ Partial Class DialogHelper
         '
         Me.TextBox1.Location = New System.Drawing.Point(47, 6)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(517, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(422, 20)
         Me.TextBox1.TabIndex = 3
         '
         'DialogHelper

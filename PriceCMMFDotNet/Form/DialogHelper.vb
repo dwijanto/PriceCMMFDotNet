@@ -25,7 +25,6 @@ Public Class DialogHelper
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
         Dim myfilter As String = String.Empty
-        'myfilter = String.Format("sbuname like '%{0}%' or familyname like '%{0}%'", TextBox1.Text)
         myfilter = String.Format(Filter, TextBox1.Text)
         bs.Filter = myfilter
     End Sub

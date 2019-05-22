@@ -86,6 +86,7 @@
     <Compile Include="Class\Interface\IController.vb" />
     <Compile Include="Class\Interface\IModel.vb" />
     <Compile Include="Class\Interface\IToolbarAction.vb" />
+    <Compile Include="Class\ItemCreation.vb" />
     <Compile Include="Class\Model\CMMFModel.vb" />
     <Compile Include="Class\Model\UserModel.vb" />
     <Compile Include="Class\Model\VendorModel.vb" />
@@ -112,10 +113,22 @@
     <Compile Include="Form\DialogHelper.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\DialogItemCreation.Designer.vb">
+      <DependentUpon>DialogItemCreation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\DialogItemCreation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FormCMMF.Designer.vb">
       <DependentUpon>FormCMMF.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\FormCMMF.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\ProjectRangeHelper.Designer.vb">
+      <DependentUpon>ProjectRangeHelper.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\ProjectRangeHelper.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -141,8 +154,14 @@
     <EmbeddedResource Include="Form\DialogHelper.resx">
       <DependentUpon>DialogHelper.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\DialogItemCreation.resx">
+      <DependentUpon>DialogItemCreation.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\FormCMMF.resx">
       <DependentUpon>FormCMMF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\ProjectRangeHelper.resx">
+      <DependentUpon>ProjectRangeHelper.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -162,6 +181,35 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

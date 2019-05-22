@@ -4,19 +4,20 @@ Imports System.Text
 Public Class FormCMMF
     Dim myController As CMMFController
     Dim myThread As New System.Threading.Thread(AddressOf DoWork)
+
     'Dim myColumnFilter = {"c.cmmf", "c.materialcode", "p.projectname", "ssm.officersebname", "spm.officersebname"}
     Dim myColumnFilter = {"cmmf", "materialcode", "projectname", "ssm", "spm"}
     Dim criteria As String = String.Empty
     'Dim DRV As DataRowView
     Dim PriceCMMFStatusList As New List(Of PriceCMMFStatus)
     Dim PriceCMMFStatusBS As New BindingSource
+
     Dim PriceCMMFSBUBS As New BindingSource
     Dim PriceCMMFFamilyBS As New BindingSource
     Dim PriceCMMFSSMBS As New BindingSource
     Dim PriceCMMFSPMBS As New BindingSource
     Dim PriceCMMFProjectBS As New BindingSource
     Dim PriceCMMFRangeBS As New BindingSource
-
     Dim PriceCMMFBrandBS As New BindingSource
     Dim PriceCMMFLoadingBS As New BindingSource
     Dim PriceCMMFPurchasingGRPBS As New BindingSource
@@ -63,6 +64,7 @@ Public Class FormCMMF
             ProgressReport(1, "Loading...Please wait.")
             'ProgressReport(9, "Clear DataGridView2")
             ClearBinding()
+            'criteria = " order by c.cmmf"
             criteria = ""
             If myController.loaddata(criteria) Then
                
@@ -116,9 +118,10 @@ Public Class FormCMMF
                         'myController.PriceCMMFLoadingBS.DataSource = myController.DS.Tables(8)
                         'myController.PriceCMMFPurchasingGRPBS = New BindingSource
                         'myController.PriceCMMFPurchasingGRPBS.DataSource = myController.DS.Tables(9)
-                        myController.BS = New BindingSource
-                        'myController.BS.DataSource = myController.DS.Tables(0)
 
+                        myController.BS = New BindingSource
+                        myController.BS.DataSource = myController.DS.Tables(0)
+                        'ApplyFilter()
 
                         PriceCMMFSBUBS = New BindingSource
                         PriceCMMFSBUBS.DataSource = myController.DS.Tables(1)
@@ -127,18 +130,24 @@ Public Class FormCMMF
                         PriceCMMFFamilyBS.DataSource = PriceCMMFSBUBS 'DS.Tables(2)
                         PriceCMMFFamilyBS.DataMember = "hdrel-SBU"
 
+                        'PriceCMMFFamilyBS.DataSource = myController.DS.Tables(2)
                         PriceCMMFSSMBS = New BindingSource
                         PriceCMMFSSMBS.DataSource = myController.DS.Tables(3)
                         PriceCMMFSPMBS = New BindingSource
-                        PriceCMMFSPMBS.DataSource = myController.DS.Tables(4)
-                        'PriceCMMFSPMBS.DataMember = "hdrel-SSM"
+                        'PriceCMMFSPMBS.DataSource = myController.DS.Tables(4)
+                        PriceCMMFSPMBS.DataSource = PriceCMMFSSMBS 'myController.DS.Tables(4)
+                        PriceCMMFSPMBS.DataMember = "hdrel-SSM"
+
 
 
                         PriceCMMFProjectBS = New BindingSource
                         PriceCMMFProjectBS.DataSource = myController.DS.Tables(5)
                         PriceCMMFRangeBS = New BindingSource
                         PriceCMMFRangeBS.DataSource = PriceCMMFProjectBS 'DS.Tables(6)
+                        'PriceCMMFRangeBS.DataSource = myController.DS.Tables(6)
                         PriceCMMFRangeBS.DataMember = "hdrel"
+
+
 
                         PriceCMMFBrandBS = New BindingSource
                         PriceCMMFBrandBS.DataSource = myController.DS.Tables(7)
@@ -146,11 +155,12 @@ Public Class FormCMMF
                         PriceCMMFLoadingBS.DataSource = myController.DS.Tables(8)
                         PriceCMMFPurchasingGRPBS = New BindingSource
                         PriceCMMFPurchasingGRPBS.DataSource = myController.DS.Tables(9)
-                        myController.BS = New BindingSource
-                        myController.BS.DataSource = myController.DS.Tables(0)
+                        'myController.BS = New BindingSource
+                        'myController.BS.DataSource = myController.DS.Tables(0)
 
                         BindingData()
-                        myController.BS.Filter = myFilter 'Filter must be applied after binding data
+
+
 
                     Case 8
                         If Not IsNothing(myController.BS.Current) Then
@@ -161,7 +171,7 @@ Public Class FormCMMF
                             Else
                                 clearBindingData2()
                                 clearBindingData3()
-                            End If
+                            End If                           
                         Else
                             clearBindingData2()
                             clearBindingData3()
@@ -184,6 +194,7 @@ Public Class FormCMMF
 
                     Case 11
                         ClearBindingControls()
+                  
                 End Select
             End If
         Catch ex As Exception
@@ -210,10 +221,11 @@ Public Class FormCMMF
 
     Private Sub ToolStripComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ToolStripComboBox1.SelectedIndexChanged, ToolStripTextBox1.TextChanged
         'LoadData()
-        ApplyFilter()
-       
-
+        If Not myThread.IsAlive Then
+            ApplyFilter()
+        End If
     End Sub
+
     Private Sub BSAgrementChange()
         ProgressReport(9, "Init Agreement")
     End Sub
@@ -256,48 +268,30 @@ Public Class FormCMMF
         TextBox27.DataBindings.Clear()
         TextBox28.DataBindings.Clear()
         TextBox29.DataBindings.Clear()
+
+        TextBox32.DataBindings.Clear()
+        TextBox33.DataBindings.Clear()
+
+        TextBox45.DataBindings.Clear()
+
+        TextBox47.DataBindings.Clear()
+        TextBox48.DataBindings.Clear()
+        TextBox49.DataBindings.Clear()
+        TextBox50.DataBindings.Clear()
+        TextBox51.DataBindings.Clear()
+
         Label41.DataBindings.Clear()
-        ComboBox1.DataBindings.Clear()
-        ComboBox2.DataBindings.Clear()
-        ComboBox3.DataBindings.Clear()
-        ComboBox4.DataBindings.Clear()
-        ComboBox5.DataBindings.Clear()
-        ComboBox6.DataBindings.Clear()
         ComboBox7.DataBindings.Clear()
         ComboBox8.DataBindings.Clear()
         ComboBox9.DataBindings.Clear()
         ComboBox10.DataBindings.Clear()
-
-        ComboBox1.DisplayMember = "sbuname"
-        ComboBox1.ValueMember = "sbuid"
-        ComboBox1.DataSource = PriceCMMFSBUBS
-
-        ComboBox2.DisplayMember = "familyname"
-        ComboBox2.ValueMember = "familyid"
-        ComboBox2.DataSource = PriceCMMFFamilyBS
-
-        ComboBox3.DisplayMember = "ssmname"
-        ComboBox3.ValueMember = "ssmid"
-        ComboBox3.DataSource = PriceCMMFSSMBS
-
-        ComboBox4.DisplayMember = "pmname"
-        ComboBox4.ValueMember = "pmid"
-        ComboBox4.DataSource = PriceCMMFSPMBS
-
-        ComboBox5.DisplayMember = "projectname"
-        ComboBox5.ValueMember = "pcprojectid"
-        ComboBox5.DataSource = PriceCMMFProjectBS
-
-        ComboBox6.DisplayMember = "rangename"
-        ComboBox6.ValueMember = "pcrangeid"
-        ComboBox6.DataSource = PriceCMMFRangeBS
 
         ComboBox7.DisplayMember = "brandname"
         ComboBox7.ValueMember = "brandid"
         ComboBox7.DataSource = PriceCMMFBrandBS
 
         ComboBox8.DisplayMember = "loadingname"
-        ComboBox8.ValueMember = "loadingid"
+        ComboBox8.ValueMember = "loadingcode"
         ComboBox8.DataSource = PriceCMMFLoadingBS
 
         ComboBox9.DisplayMember = "typeofitem"
@@ -339,24 +333,28 @@ Public Class FormCMMF
         TextBox27.DataBindings.Add(New Binding("Text", myController.BS, "srdc", True, DataSourceUpdateMode.OnPropertyChanged))
         TextBox28.DataBindings.Add(New Binding("Text", myController.BS, "spps", True, DataSourceUpdateMode.OnPropertyChanged))
         TextBox29.DataBindings.Add(New Binding("Text", myController.BS, "materialcode", True, DataSourceUpdateMode.OnPropertyChanged))
-        Label41.DataBindings.Add(New Binding("Text", myController.BS, "cmmf", True, DataSourceUpdateMode.OnPropertyChanged))
+        TextBox50.DataBindings.Add(New Binding("Text", myController.BS, "sbuname", True, DataSourceUpdateMode.OnPropertyChanged))
+        TextBox51.DataBindings.Add(New Binding("Text", myController.BS, "familyname", True, DataSourceUpdateMode.OnPropertyChanged))
+        TextBox49.DataBindings.Add(New Binding("Text", myController.BS, "ssm", True, DataSourceUpdateMode.OnPropertyChanged))
+        TextBox48.DataBindings.Add(New Binding("Text", myController.BS, "spm", True, DataSourceUpdateMode.OnPropertyChanged))
+        TextBox45.DataBindings.Add(New Binding("Text", myController.BS, "projectname", True, DataSourceUpdateMode.OnPropertyChanged))
+        TextBox47.DataBindings.Add(New Binding("Text", myController.BS, "rangename", True, DataSourceUpdateMode.OnPropertyChanged))
 
-        ComboBox1.DataBindings.Add(New Binding("SelectedValue", myController.BS, "sbuid", True, DataSourceUpdateMode.OnPropertyChanged))
-        ComboBox2.DataBindings.Add(New Binding("SelectedValue", myController.BS, "familyid", True, DataSourceUpdateMode.OnPropertyChanged))
-        ComboBox3.DataBindings.Add(New Binding("SelectedValue", myController.BS, "ssmid", True, DataSourceUpdateMode.OnPropertyChanged))
-        ComboBox4.DataBindings.Add(New Binding("SelectedValue", myController.BS, "spmid", True, DataSourceUpdateMode.OnPropertyChanged))
-        ComboBox5.DataBindings.Add(New Binding("SelectedValue", myController.BS, "pcprojectid", True, DataSourceUpdateMode.OnPropertyChanged))
-        ComboBox6.DataBindings.Add(New Binding("SelectedValue", myController.BS, "pcrangeid", True, DataSourceUpdateMode.OnPropertyChanged))
+        'TextBox32.DataBindings.Add(New Binding("Text", myController.BS, "netprice", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.0000"))
+        'TextBox33.DataBindings.Add(New Binding("Text", myController.BS, "amort", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.0000"))
+
+        Label41.DataBindings.Add(New Binding("Text", myController.BS, "cmmf", True, DataSourceUpdateMode.OnPropertyChanged))
         ComboBox7.DataBindings.Add(New Binding("SelectedValue", myController.BS, "brandid", True, DataSourceUpdateMode.OnPropertyChanged))
-        ComboBox8.DataBindings.Add(New Binding("SelectedValue", myController.BS, "loadingid", True, DataSourceUpdateMode.OnPropertyChanged))
+        ComboBox8.DataBindings.Add(New Binding("SelectedValue", myController.BS, "loadingcode", True, DataSourceUpdateMode.OnPropertyChanged))
         ComboBox9.DataBindings.Add(New Binding("SelectedValue", myController.BS, "pgid", True, DataSourceUpdateMode.OnPropertyChanged))
         ComboBox10.DataBindings.Add(New Binding("SelectedValue", myController.BS, "eol", True, DataSourceUpdateMode.OnPropertyChanged))
     End Sub
 
     Private Sub clearBindingData2()
         TextBox30.Clear()
-        TextBox32.Clear()
-        TextBox33.Clear()
+        'TextBox32.Clear()  'Since TextBox32 and TextBox33 is used by Two binding source, no need to clear.
+        'TextBox33.Clear()
+
         TextBox34.Clear()
         TextBox35.Clear()
         TextBox36.Clear()
@@ -392,9 +390,16 @@ Public Class FormCMMF
         DataGridView2.DataSource = myController.Model.BSPriceList
 
         TextBox30.DataBindings.Add(New Binding("Text", myController.Model.BSPriceList, "allcomments", True, DataSourceUpdateMode.OnPropertyChanged))
-        TextBox32.DataBindings.Add(New Binding("Text", myController.Model.BSPriceList, "price", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.00"))
-        TextBox33.DataBindings.Add(New Binding("Text", myController.Model.BSPriceList, "validamort", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.00"))
-        TextBox34.DataBindings.Add(New Binding("Text", myController.Model.BSPriceList, "fobamort", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.00"))
+        If IsNothing(myController.Model.BSPricelist.Current) Then
+            TextBox32.DataBindings.Add(New Binding("Text", myController.BS, "netprice", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.0000"))
+            TextBox33.DataBindings.Add(New Binding("Text", myController.BS, "amort", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.0000"))
+        Else
+            TextBox32.DataBindings.Add(New Binding("Text", myController.Model.BSPricelist, "price", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.0000"))
+            TextBox33.DataBindings.Add(New Binding("Text", myController.Model.BSPricelist, "validamort", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.0000"))
+        End If
+        
+
+        TextBox34.DataBindings.Add(New Binding("Text", myController.Model.BSPricelist, "fobamort", True, DataSourceUpdateMode.OnPropertyChanged, "", "#,##0.0000"))
         TextBox35.DataBindings.Add(New Binding("Text", myController.Model.BSPriceList, "mydate", True, DataSourceUpdateMode.OnPropertyChanged, "", "dd-MMM-yyyy"))
         TextBox36.DataBindings.Add(New Binding("Text", myController.Model.BSPriceList, "agreement", True, DataSourceUpdateMode.OnPropertyChanged))
         TextBox37.DataBindings.Add(New Binding("Text", myController.Model.BSPricelist, "closingdate", True, DataSourceUpdateMode.OnPropertyChanged, "", "dd-MMM-yyyy"))
@@ -459,119 +464,24 @@ Public Class FormCMMF
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
-        Me.Validate()
-        PriceCMMFProjectBS.EndEdit()
-        PriceCMMFRangeBS.EndEdit()
-        
-        myController.save()
+        If Not myThread.IsAlive Then          
+            Me.Validate()
+            PriceCMMFProjectBS.EndEdit()
+            PriceCMMFRangeBS.EndEdit()
 
-    End Sub
-
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click, Button2.Click
-        Dim bs As New BindingSource
-        bs.DataSource = myController.DS.Tables(2).Copy()
-        Dim myhelper As New DialogHelper(bs)
-        myhelper.Filter = "sbuname like '%{0}%' or familyname like '%{0}%'"
-        myhelper.Column1.HeaderText = "SBU"
-        myhelper.Column1.DataPropertyName = "sbuname"
-        myhelper.Column1.Width = 250
-
-        myhelper.Column2.HeaderText = "Family"
-        myhelper.Column2.DataPropertyName = "familyname"
-        myhelper.Column2.Width = 250
-
-        If myhelper.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            Dim drvhelper As DataRowView = bs.Current
-            Dim drv As DataRowView = myController.BS.Current
-            drv.Row.Item("sbuid") = drvhelper.Row.Item("sbuid")
-            drv.Row.Item("sbuname") = drvhelper.Row.Item("sbuname")
-            drv.Row.Item("familyid") = drvhelper.Row.Item("familyid")
-            drv.Row.Item("familyname") = drvhelper.Row.Item("familyname")
-
-            Dim myPos = PriceCMMFSBUBS.Find("sbuid", drvhelper.Row.Item("sbuid"))
-            ComboBox1.SelectedIndex = myPos
-            myPos = PriceCMMFFamilyBS.Find("familyid", drvhelper.Row.Item("familyid"))
-            ComboBox2.SelectedIndex = myPos
-            InvalidateMe()
+            myController.save()
         End If
+       
     End Sub
-
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click, Button3.Click
-        Dim bs As New BindingSource
-        bs.DataSource = myController.DS.Tables(4).Copy()
-        Dim myhelper As New DialogHelper(bs)
-        myhelper.Filter = "ssmname like '%{0}%' or pmname like '%{0}%'"
-        myhelper.Column1.HeaderText = "SSM Name"
-        myhelper.Column1.DataPropertyName = "ssmname"
-        myhelper.Column1.Width = 250
-
-        myhelper.Column2.HeaderText = "PM Name"
-        myhelper.Column2.DataPropertyName = "pmname"
-        myhelper.Column2.Width = 250
-
-        myhelper.Column3.Visible = False
-        myhelper.Column4.Visible = False
-
-        If myhelper.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            Dim drvhelper As DataRowView = bs.Current
-            Dim drv As DataRowView = myController.BS.Current
-            drv.Row.Item("ssmid") = drvhelper.Row.Item("ssmid")
-            drv.Row.Item("ssm") = drvhelper.Row.Item("ssmname")
-            drv.Row.Item("spmid") = drvhelper.Row.Item("pmid")
-            drv.Row.Item("spm") = drvhelper.Row.Item("pmname")
-
-            Dim myPos = PriceCMMFSSMBS.Find("ssmid", drvhelper.Row.Item("ssmid"))
-            ComboBox3.SelectedIndex = myPos
-            myPos = PriceCMMFSPMBS.Find("pmid", drvhelper.Row.Item("pmid"))
-            ComboBox4.SelectedIndex = myPos
-            InvalidateMe()
-        End If
-    End Sub
-   
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click, Button4.Click
-        Dim bs As New BindingSource
-        bs.DataSource = myController.DS.Tables(10).Copy()
-        Dim myhelper As New DialogHelper(bs)
-        myhelper.Filter = "projectname like '%{0}%' or rangename like '%{0}%'"
-        myhelper.Column1.HeaderText = "Project Name"
-        myhelper.Column1.DataPropertyName = "projectname"
-        myhelper.Column1.Width = 250
-
-        myhelper.Column2.HeaderText = "Range Name"
-        myhelper.Column2.DataPropertyName = "rangename"
-        myhelper.Column2.Width = 250
-
-        myhelper.Column3.HeaderText = "SSM"
-        myhelper.Column3.DataPropertyName = "ssm"
-        myhelper.Column3.Width = 250
-
-        myhelper.Column4.HeaderText = "SPM"
-        myhelper.Column4.DataPropertyName = "spm"
-        myhelper.Column4.Width = 250
-
-
-        If myhelper.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            Dim drvhelper As DataRowView = bs.Current
-            Dim drv As DataRowView = myController.BS.Current
-            drv.Row.Item("pcrangeid") = drvhelper.Row.Item("pcrangeid")
-            'Find ProjectCombobox
-            Dim myPos = PriceCMMFProjectBS.Find("pcprojectid", drvhelper.Row.Item("pcprojectid"))
-            ComboBox5.SelectedIndex = myPos
-            'Find RangeCombobox
-            myPos = PriceCMMFRangeBS.Find("pcrangeid", drvhelper.Row.Item("pcrangeid"))
-            ComboBox6.SelectedIndex = myPos
-
-            drv.Row.Item("projectname") = drvhelper.Row.Item("projectname")
-            InvalidateMe()
-        End If
-    End Sub
-
 
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        Dim DRV = myController.BS.AddNew()
-        DRV.Row.Item("eol") = False
+        If Not myThread.IsAlive Then
+            myController.BS.Sort = "" 'Remove sort to avoid incorrect row position
+            Dim DRV = myController.BS.AddNew()
+            DRV.Row.Item("eol") = False
+        End If
+
     End Sub
 
     Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
@@ -584,46 +494,6 @@ Public Class FormCMMF
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged, TextBox29.TextChanged
         InvalidateMe()
-    End Sub
-
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-
-    End Sub
-
-    Private Sub ComboBox5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox5.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub ComboBox5_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ComboBox5.Validating, ComboBox6.Validating
-        Dim cb As ComboBox = DirectCast(sender, ComboBox)
-        If IsNothing(cb.SelectedItem) Then
-            Dim currDrv = myController.BS.Current
-            Select Case cb.Name
-                Case "ComboBox5" 'Project
-                    Dim ProjectName As String = ComboBox5.Text
-                    Dim drv As DataRowView = PriceCMMFProjectBS.AddNew
-                    drv.Row.Item("projectname") = ProjectName
-                    currDrv.Row.Item("projectname") = drv.Row.Item("projectname")
-                    drv.EndEdit()
-                    Dim mypos = PriceCMMFProjectBS.Find("pcprojectid", drv.Row.Item("pcprojectid"))
-                    ComboBox5.SelectedIndex = mypos
-
-                    InvalidateMe()
-
-                Case "ComboBox6" 'Range
-                    Dim RangeName As String = ComboBox6.Text
-
-                    Dim drv As DataRowView = PriceCMMFRangeBS.AddNew
-                    drv.Row.Item("rangename") = RangeName
-                    drv.EndEdit()
-                    currDrv.Row.Item("rangename") = drv.Row.Item("rangename")
-                    Dim mypos = PriceCMMFRangeBS.Find("pcrangeid", drv.Row.Item("pcrangeid"))
-                    ComboBox6.SelectedIndex = mypos
-
-                    InvalidateMe()
-            End Select
-        End If
     End Sub
 
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
@@ -659,28 +529,107 @@ Public Class FormCMMF
     End Sub
 
     Private Sub ApplyFilter()
+        ' If Not myThread.IsAlive Then
+        Dim sb As New StringBuilder
+        myFilter = ""
+        If ToolStripComboBox1.ComboBox.SelectedIndex = 0 Then
+            sb.Append(String.Format("[{0}] = {1}", myColumnFilter(ToolStripComboBox1.ComboBox.SelectedIndex), IIf(IsNumeric(ToolStripTextBox1.Text), ToolStripTextBox1.Text, 0)))
+        Else
+            sb.Append(String.Format("[{0}] like '%{1}%'", myColumnFilter(ToolStripComboBox1.ComboBox.SelectedIndex), ToolStripTextBox1.Text.ToUpper))
+        End If
+        If ToolStripTextBox1.Text <> "" Then
+            myFilter = sb.ToString
+        End If
+        If Not IsNothing(myController) Then
+            myController.ApplyFilter = myFilter
+            myController.BS.Sort = myColumnFilter(ToolStripComboBox1.ComboBox.SelectedIndex)
+            ProgressReport(1, String.Format("Filter...Done. Records {0}", myController.BS.Count))
+        End If
+        'Else
+        'MessageBox.Show("Please wait until the current process is finished.")
+        'End If
+
+    End Sub
+
+
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        Debug.Print("")
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        'Note, SPM PM di update pada saat Add or Update PCCMMF.
+        Dim myform = New ProjectRangeHelper(myController.BS, PriceCMMFSBUBS, PriceCMMFFamilyBS, PriceCMMFSSMBS, PriceCMMFSPMBS, PriceCMMFProjectBS, PriceCMMFRangeBS)
+        myform.ShowDialog()
+        myController.BS.EndEdit()
+        Debug.Print("")
+        Me.Invalidate()
+    End Sub
+
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        If Not IsNothing(myController.Model.BSPricelist) Then
+            Dim mydrv As DataRowView = myController.Model.BSPricelist.Current
+            If MessageBox.Show(String.Format("Delete this price record? {0} {1:dd-MMM-yyyy}", mydrv.Item(""), mydrv.Item("")), "Delete Record", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = DialogResult.OK Then
+                For Each drv As DataGridViewRow In DataGridView2.SelectedRows
+                    myController.Model.BSPricelist.RemoveAt(drv.Index)
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
         If Not myThread.IsAlive Then
-            Dim sb As New StringBuilder
-            myFilter = ""
-            If ToolStripComboBox1.ComboBox.SelectedIndex = 0 Then
-                sb.Append(String.Format("[{0}] = {1}", myColumnFilter(ToolStripComboBox1.ComboBox.SelectedIndex), IIf(IsNumeric(ToolStripTextBox1.Text), ToolStripTextBox1.Text, 0)))
-            Else
-                sb.Append(String.Format("[{0}] like '%{1}%'", myColumnFilter(ToolStripComboBox1.ComboBox.SelectedIndex), ToolStripTextBox1.Text.ToUpper))
+
+            If MessageBox.Show("Do you want to update familyid?", "Sync Family Id", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = Windows.Forms.DialogResult.OK Then
+                ToolStripStatusLabel1.Text = ""
+                myThread = New Thread(AddressOf DoSyncFamilyId)
+                myThread.Start()
             End If
-            If ToolStripTextBox1.Text <> "" Then
-                myFilter = sb.ToString
-            End If
-            If Not IsNothing(myController) Then
-                myController.ApplyFilter = myFilter
-                ProgressReport(1, String.Format("Filter...Done. Records {0}", myController.BS.Count))
-            End If
+            
         Else
             MessageBox.Show("Please wait until the current process is finished.")
         End If
 
     End Sub
 
+    Private Sub DoSyncFamilyId()
+        ProgressReport(1, "Sync Family Id...Please wait.")
+        Dim myresult As Long = myController.SyncFamily()
+        ProgressReport(1, String.Format("Sync Family Id Done. ({0} records affected). Please refresh your data.", myresult))
+    End Sub
 
+    Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
+        If Not myThread.IsAlive Then
+            Dim myform = New DialogItemCreation(myController)
+            myform.ShowDialog()
+        Else
+            MessageBox.Show("Please wait until the current process is finished.")
+        End If
+       
+    End Sub
+
+
+    Private Sub TextBox33_Validated(sender As Object, e As EventArgs) Handles TextBox33.Validated, TextBox32.Validated
+        Debug.Print("TextBox33")
+    End Sub
+
+    Private Sub ComboBox8_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles ComboBox8.SelectionChangeCommitted
+        Dim cbdrv As DataRowView = ComboBox8.SelectedItem
+        If Not IsNothing(cbdrv) Then
+            Dim drv As DataRowView = myController.BS.Current
+            drv.Row.Item("loadinggroup") = cbdrv.Row.Item("loadinggroup")
+        End If
+
+    End Sub
+
+    Private Sub ComboBox9_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles ComboBox9.SelectionChangeCommitted
+        Dim cbdrv As DataRowView = ComboBox9.SelectedItem
+        If Not IsNothing(cbdrv) Then
+            Dim drv As DataRowView = myController.BS.Current
+            drv.Row.Item("purchasinggroup") = cbdrv.Row.Item("purchasinggroup")
+        End If
+    End Sub
 End Class
 
 Public Class PriceCMMFStatus

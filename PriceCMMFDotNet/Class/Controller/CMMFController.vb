@@ -48,13 +48,15 @@
             DS.Tables(0).PrimaryKey = pk
             BS = New BindingSource
             BS.DataSource = DS.Tables(0)
-
-           
-
             myret = True
         End If
         Return myret
     End Function
+
+    Public Function SyncFamily() As Long
+        Return Model.SyncFamilyId()
+    End Function
+
     Public Function loaddata(ByVal criteria As String) As Boolean
         Dim myret As Boolean = False
         Model = New CMMFModel
@@ -104,11 +106,12 @@
                 If save(mye) Then
                     DS.Merge(ds2)
                     'Don't use DS.AcceptChanges. Use the statement below.
+                    'Reason: Only AcceptChanges for modified Table. if unmodified table use AcceptChanges -> the position is set to first Row (not correct)
                     For Each mytable As DataTable In ds2.Tables
-                        If mytable.Rows.Count > 0 Then                           
+                        If mytable.Rows.Count > 0 Then
                             DS.Tables(mytable.TableName).AcceptChanges()
                         End If
-                    Next                    
+                    Next
                     MessageBox.Show("Saved.")
                     myret = True
                 End If
@@ -116,6 +119,8 @@
                 MessageBox.Show(ex.Message)
                 DS.Merge(ds2)
             End Try
+        Else
+            MessageBox.Show("Nothing to save.")
         End If
 
         Return myret

@@ -73,7 +73,6 @@ Partial Class FormCMMF
         Me.TextBox33 = New System.Windows.Forms.TextBox()
         Me.TextBox32 = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
@@ -88,14 +87,20 @@ Partial Class FormCMMF
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.TextBox51 = New System.Windows.Forms.TextBox()
+        Me.TextBox48 = New System.Windows.Forms.TextBox()
+        Me.TextBox50 = New System.Windows.Forms.TextBox()
+        Me.TextBox49 = New System.Windows.Forms.TextBox()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.TextBox47 = New System.Windows.Forms.TextBox()
+        Me.TextBox45 = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -103,12 +108,6 @@ Partial Class FormCMMF
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
@@ -116,13 +115,6 @@ Partial Class FormCMMF
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ComboBox7 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox6 = New System.Windows.Forms.ComboBox()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ComboBox5 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.TextBox23 = New System.Windows.Forms.TextBox()
@@ -177,7 +169,6 @@ Partial Class FormCMMF
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -187,6 +178,10 @@ Partial Class FormCMMF
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolStripContainer1.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
@@ -207,10 +202,11 @@ Partial Class FormCMMF
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        Me.ContextMenuStrip1.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStripContainer1
@@ -223,11 +219,11 @@ Partial Class FormCMMF
         'ToolStripContainer1.ContentPanel
         '
         Me.ToolStripContainer1.ContentPanel.Controls.Add(Me.SplitContainer1)
-        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(831, 562)
+        Me.ToolStripContainer1.ContentPanel.Size = New System.Drawing.Size(947, 562)
         Me.ToolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainer1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainer1.Name = "ToolStripContainer1"
-        Me.ToolStripContainer1.Size = New System.Drawing.Size(831, 609)
+        Me.ToolStripContainer1.Size = New System.Drawing.Size(947, 609)
         Me.ToolStripContainer1.TabIndex = 0
         Me.ToolStripContainer1.Text = "ToolStripContainer1"
         '
@@ -241,7 +237,7 @@ Partial Class FormCMMF
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2, Me.ToolStripProgressBar1})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 0)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(831, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(947, 22)
         Me.StatusStrip1.TabIndex = 4
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -254,7 +250,7 @@ Partial Class FormCMMF
         'ToolStripStatusLabel2
         '
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(714, 17)
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(830, 17)
         Me.ToolStripStatusLabel2.Spring = True
         Me.ToolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -277,7 +273,7 @@ Partial Class FormCMMF
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.TabControl1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(831, 562)
+        Me.SplitContainer1.Size = New System.Drawing.Size(947, 562)
         Me.SplitContainer1.SplitterDistance = 179
         Me.SplitContainer1.TabIndex = 0
         '
@@ -293,7 +289,7 @@ Partial Class FormCMMF
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(831, 179)
+        Me.DataGridView1.Size = New System.Drawing.Size(947, 179)
         Me.DataGridView1.TabIndex = 0
         '
         'Column1
@@ -348,7 +344,7 @@ Partial Class FormCMMF
         Me.TabControl1.Location = New System.Drawing.Point(0, 2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(828, 377)
+        Me.TabControl1.Size = New System.Drawing.Size(944, 359)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -360,7 +356,7 @@ Partial Class FormCMMF
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(820, 351)
+        Me.TabPage1.Size = New System.Drawing.Size(936, 333)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Price Info"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -655,7 +651,6 @@ Partial Class FormCMMF
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.Label44)
         Me.GroupBox1.Controls.Add(Me.Label43)
         Me.GroupBox1.Controls.Add(Me.Label42)
@@ -670,15 +665,6 @@ Partial Class FormCMMF
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Other Information"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(312, 111)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 8
-        Me.Button1.Text = "Delete Price"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'Label44
         '
@@ -721,6 +707,7 @@ Partial Class FormCMMF
         Me.TextBox30.Location = New System.Drawing.Point(103, 58)
         Me.TextBox30.Multiline = True
         Me.TextBox30.Name = "TextBox30"
+        Me.TextBox30.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TextBox30.Size = New System.Drawing.Size(284, 44)
         Me.TextBox30.TabIndex = 2
         '
@@ -796,21 +783,14 @@ Partial Class FormCMMF
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(820, 350)
+        Me.TabPage2.Size = New System.Drawing.Size(936, 332)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Product"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'GroupBox4
         '
-        Me.GroupBox4.Controls.Add(Me.Button7)
-        Me.GroupBox4.Controls.Add(Me.Button6)
-        Me.GroupBox4.Controls.Add(Me.Button5)
-        Me.GroupBox4.Controls.Add(Me.Button4)
-        Me.GroupBox4.Controls.Add(Me.Button3)
-        Me.GroupBox4.Controls.Add(Me.Button2)
-        Me.GroupBox4.Controls.Add(Me.ComboBox1)
-        Me.GroupBox4.Controls.Add(Me.ComboBox2)
+        Me.GroupBox4.Controls.Add(Me.GroupBox6)
         Me.GroupBox4.Controls.Add(Me.Label8)
         Me.GroupBox4.Controls.Add(Me.Label9)
         Me.GroupBox4.Controls.Add(Me.Label10)
@@ -818,12 +798,6 @@ Partial Class FormCMMF
         Me.GroupBox4.Controls.Add(Me.Label12)
         Me.GroupBox4.Controls.Add(Me.Label13)
         Me.GroupBox4.Controls.Add(Me.Label7)
-        Me.GroupBox4.Controls.Add(Me.Label6)
-        Me.GroupBox4.Controls.Add(Me.Label5)
-        Me.GroupBox4.Controls.Add(Me.Label4)
-        Me.GroupBox4.Controls.Add(Me.Label3)
-        Me.GroupBox4.Controls.Add(Me.Label2)
-        Me.GroupBox4.Controls.Add(Me.Label1)
         Me.GroupBox4.Controls.Add(Me.TextBox6)
         Me.GroupBox4.Controls.Add(Me.TextBox5)
         Me.GroupBox4.Controls.Add(Me.TextBox4)
@@ -831,10 +805,6 @@ Partial Class FormCMMF
         Me.GroupBox4.Controls.Add(Me.TextBox2)
         Me.GroupBox4.Controls.Add(Me.TextBox1)
         Me.GroupBox4.Controls.Add(Me.ComboBox7)
-        Me.GroupBox4.Controls.Add(Me.ComboBox6)
-        Me.GroupBox4.Controls.Add(Me.ComboBox5)
-        Me.GroupBox4.Controls.Add(Me.ComboBox4)
-        Me.GroupBox4.Controls.Add(Me.ComboBox3)
         Me.GroupBox4.Location = New System.Drawing.Point(8, 18)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(806, 327)
@@ -842,76 +812,138 @@ Partial Class FormCMMF
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Details"
         '
-        'Button7
+        'GroupBox6
         '
-        Me.Button7.Location = New System.Drawing.Point(347, 62)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(26, 21)
-        Me.Button7.TabIndex = 32
-        Me.Button7.Text = "..."
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.GroupBox6.Controls.Add(Me.TextBox51)
+        Me.GroupBox6.Controls.Add(Me.TextBox48)
+        Me.GroupBox6.Controls.Add(Me.TextBox50)
+        Me.GroupBox6.Controls.Add(Me.TextBox49)
+        Me.GroupBox6.Controls.Add(Me.Button8)
+        Me.GroupBox6.Controls.Add(Me.TextBox47)
+        Me.GroupBox6.Controls.Add(Me.TextBox45)
+        Me.GroupBox6.Controls.Add(Me.Label6)
+        Me.GroupBox6.Controls.Add(Me.Label5)
+        Me.GroupBox6.Controls.Add(Me.Label4)
+        Me.GroupBox6.Controls.Add(Me.Label3)
+        Me.GroupBox6.Controls.Add(Me.Label1)
+        Me.GroupBox6.Controls.Add(Me.Label2)
+        Me.GroupBox6.Location = New System.Drawing.Point(6, 42)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(380, 184)
+        Me.GroupBox6.TabIndex = 40
+        Me.GroupBox6.TabStop = False
         '
-        'Button6
+        'TextBox51
         '
-        Me.Button6.Location = New System.Drawing.Point(347, 9)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(26, 21)
-        Me.Button6.TabIndex = 31
-        Me.Button6.Text = "..."
-        Me.ToolTip1.SetToolTip(Me.Button6, "Click here for SBU and Family Helper")
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.TextBox51.Location = New System.Drawing.Point(86, 44)
+        Me.TextBox51.Name = "TextBox51"
+        Me.TextBox51.ReadOnly = True
+        Me.TextBox51.Size = New System.Drawing.Size(258, 20)
+        Me.TextBox51.TabIndex = 42
         '
-        'Button5
+        'TextBox48
         '
-        Me.Button5.Location = New System.Drawing.Point(347, 116)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(26, 21)
-        Me.Button5.TabIndex = 30
-        Me.Button5.Text = "..."
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.TextBox48.Location = New System.Drawing.Point(86, 96)
+        Me.TextBox48.Name = "TextBox48"
+        Me.TextBox48.ReadOnly = True
+        Me.TextBox48.Size = New System.Drawing.Size(258, 20)
+        Me.TextBox48.TabIndex = 39
         '
-        'Button4
+        'TextBox50
         '
-        Me.Button4.Location = New System.Drawing.Point(347, 141)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(26, 21)
-        Me.Button4.TabIndex = 29
-        Me.Button4.Text = "..."
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.TextBox50.Location = New System.Drawing.Point(86, 19)
+        Me.TextBox50.Name = "TextBox50"
+        Me.TextBox50.ReadOnly = True
+        Me.TextBox50.Size = New System.Drawing.Size(258, 20)
+        Me.TextBox50.TabIndex = 41
         '
-        'Button3
+        'TextBox49
         '
-        Me.Button3.Location = New System.Drawing.Point(347, 89)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(26, 21)
-        Me.Button3.TabIndex = 28
-        Me.Button3.Text = "..."
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.TextBox49.Location = New System.Drawing.Point(86, 70)
+        Me.TextBox49.Name = "TextBox49"
+        Me.TextBox49.ReadOnly = True
+        Me.TextBox49.Size = New System.Drawing.Size(258, 20)
+        Me.TextBox49.TabIndex = 38
         '
-        'Button2
+        'Button8
         '
-        Me.Button2.Location = New System.Drawing.Point(347, 35)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(26, 21)
-        Me.Button2.TabIndex = 27
-        Me.Button2.Text = "..."
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Button8.Location = New System.Drawing.Point(350, 18)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(26, 21)
+        Me.Button8.TabIndex = 37
+        Me.Button8.Text = "..."
+        Me.ToolTip1.SetToolTip(Me.Button8, "Click here to modify")
+        Me.Button8.UseVisualStyleBackColor = True
         '
-        'ComboBox1
+        'TextBox47
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(83, 9)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(258, 21)
-        Me.ComboBox1.TabIndex = 0
+        Me.TextBox47.Location = New System.Drawing.Point(86, 149)
+        Me.TextBox47.Name = "TextBox47"
+        Me.TextBox47.ReadOnly = True
+        Me.TextBox47.Size = New System.Drawing.Size(258, 20)
+        Me.TextBox47.TabIndex = 35
         '
-        'ComboBox2
+        'TextBox45
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(83, 36)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(258, 21)
-        Me.ComboBox2.TabIndex = 1
+        Me.TextBox45.Location = New System.Drawing.Point(86, 123)
+        Me.TextBox45.Name = "TextBox45"
+        Me.TextBox45.ReadOnly = True
+        Me.TextBox45.Size = New System.Drawing.Size(258, 20)
+        Me.TextBox45.TabIndex = 34
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(9, 151)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(74, 13)
+        Me.Label6.TabIndex = 18
+        Me.Label6.Text = "Color / Range"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(9, 126)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(71, 13)
+        Me.Label5.TabIndex = 17
+        Me.Label5.Text = "Project Name"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(28, 99)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(52, 13)
+        Me.Label4.TabIndex = 16
+        Me.Label4.Text = "PM/PDM"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(14, 73)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(66, 13)
+        Me.Label3.TabIndex = 15
+        Me.Label3.Text = "SPM/SPDM"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(41, 19)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(29, 13)
+        Me.Label1.TabIndex = 13
+        Me.Label1.Text = "SBU"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(4, 46)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(76, 13)
+        Me.Label2.TabIndex = 14
+        Me.Label2.Text = "Product Family"
         '
         'Label8
         '
@@ -970,72 +1002,18 @@ Partial Class FormCMMF
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(25, 171)
+        Me.Label7.Location = New System.Drawing.Point(34, 16)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(38, 13)
         Me.Label7.TabIndex = 19
         Me.Label7.Text = "CMMF"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(6, 145)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(74, 13)
-        Me.Label6.TabIndex = 18
-        Me.Label6.Text = "Color / Range"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 120)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(71, 13)
-        Me.Label5.TabIndex = 17
-        Me.Label5.Text = "Project Name"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(25, 93)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(52, 13)
-        Me.Label4.TabIndex = 16
-        Me.Label4.Text = "PM/PDM"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(11, 66)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(66, 13)
-        Me.Label3.TabIndex = 15
-        Me.Label3.Text = "SPM/SPDM"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(1, 39)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(76, 13)
-        Me.Label2.TabIndex = 14
-        Me.Label2.Text = "Product Family"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(38, 12)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(29, 13)
-        Me.Label1.TabIndex = 13
-        Me.Label1.Text = "SBU"
         '
         'TextBox6
         '
         Me.TextBox6.Location = New System.Drawing.Point(471, 168)
         Me.TextBox6.Multiline = True
         Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(258, 52)
+        Me.TextBox6.Size = New System.Drawing.Size(258, 43)
         Me.TextBox6.TabIndex = 12
         '
         'TextBox5
@@ -1069,7 +1047,7 @@ Partial Class FormCMMF
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(83, 171)
+        Me.TextBox1.Location = New System.Drawing.Point(92, 16)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(258, 20)
         Me.TextBox1.TabIndex = 7
@@ -1082,65 +1060,13 @@ Partial Class FormCMMF
         Me.ComboBox7.Size = New System.Drawing.Size(258, 21)
         Me.ComboBox7.TabIndex = 6
         '
-        'ComboBox6
-        '
-        Me.ComboBox6.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.ComboBox6.FormattingEnabled = True
-        Me.ComboBox6.Location = New System.Drawing.Point(83, 144)
-        Me.ComboBox6.Name = "ComboBox6"
-        Me.ComboBox6.Size = New System.Drawing.Size(258, 21)
-        Me.ComboBox6.TabIndex = 5
-        '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 48)
-        '
-        'AddToolStripMenuItem
-        '
-        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
-        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.AddToolStripMenuItem.Text = "Add"
-        '
-        'DeleteToolStripMenuItem
-        '
-        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.DeleteToolStripMenuItem.Text = "Delete"
-        '
-        'ComboBox5
-        '
-        Me.ComboBox5.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.ComboBox5.FormattingEnabled = True
-        Me.ComboBox5.Location = New System.Drawing.Point(83, 117)
-        Me.ComboBox5.Name = "ComboBox5"
-        Me.ComboBox5.Size = New System.Drawing.Size(258, 21)
-        Me.ComboBox5.TabIndex = 4
-        '
-        'ComboBox4
-        '
-        Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Location = New System.Drawing.Point(83, 90)
-        Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(258, 21)
-        Me.ComboBox4.TabIndex = 3
-        '
-        'ComboBox3
-        '
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(83, 63)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(258, 21)
-        Me.ComboBox3.TabIndex = 2
-        '
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.GroupBox5)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(820, 350)
+        Me.TabPage3.Size = New System.Drawing.Size(936, 332)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Logistics Information"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1599,10 +1525,10 @@ Partial Class FormCMMF
         'ToolStrip1
         '
         Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton5, Me.ToolStripSeparator1, Me.ToolStripButton6, Me.ToolStripLabel1, Me.ToolStripTextBox1, Me.ToolStripLabel2, Me.ToolStripComboBox1, Me.ToolStripButton7})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton4, Me.ToolStripButton5, Me.ToolStripSeparator1, Me.ToolStripButton6, Me.ToolStripLabel1, Me.ToolStripTextBox1, Me.ToolStripLabel2, Me.ToolStripComboBox1, Me.ToolStripButton7, Me.ToolStripButton3})
         Me.ToolStrip1.Location = New System.Drawing.Point(3, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(775, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(896, 25)
         Me.ToolStrip1.TabIndex = 0
         '
         'ToolStripButton1
@@ -1622,15 +1548,7 @@ Partial Class FormCMMF
         Me.ToolStripButton2.Name = "ToolStripButton2"
         Me.ToolStripButton2.Size = New System.Drawing.Size(39, 22)
         Me.ToolStripButton2.Text = "Copy"
-        '
-        'ToolStripButton3
-        '
-        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
-        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.ToolStripButton3.Size = New System.Drawing.Size(44, 22)
-        Me.ToolStripButton3.Text = "Delete"
+        Me.ToolStripButton2.Visible = False
         '
         'ToolStripButton4
         '
@@ -1673,7 +1591,7 @@ Partial Class FormCMMF
         'ToolStripTextBox1
         '
         Me.ToolStripTextBox1.Name = "ToolStripTextBox1"
-        Me.ToolStripTextBox1.Size = New System.Drawing.Size(100, 25)
+        Me.ToolStripTextBox1.Size = New System.Drawing.Size(150, 25)
         '
         'ToolStripLabel2
         '
@@ -1697,11 +1615,38 @@ Partial Class FormCMMF
         Me.ToolStripButton7.Size = New System.Drawing.Size(164, 22)
         Me.ToolStripButton7.Text = "Generate Item Creation Form"
         '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(84, 22)
+        Me.ToolStripButton3.Text = "Sync FamilyId"
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 48)
+        '
+        'AddToolStripMenuItem
+        '
+        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AddToolStripMenuItem.Text = "Add"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
         'FormCMMF
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(831, 609)
+        Me.ClientSize = New System.Drawing.Size(947, 609)
         Me.Controls.Add(Me.ToolStripContainer1)
         Me.Name = "FormCMMF"
         Me.Text = "FormCMMF"
@@ -1732,12 +1677,14 @@ Partial Class FormCMMF
         Me.TabPage2.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
-        Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1804,7 +1751,6 @@ Partial Class FormCMMF
     Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButton5 As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
@@ -1848,7 +1794,6 @@ Partial Class FormCMMF
     Friend WithEvents TextBox34 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox33 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox32 As System.Windows.Forms.TextBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Label44 As System.Windows.Forms.Label
     Friend WithEvents Label43 As System.Windows.Forms.Label
     Friend WithEvents Label42 As System.Windows.Forms.Label
@@ -1874,12 +1819,6 @@ Partial Class FormCMMF
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents ComboBox7 As System.Windows.Forms.ComboBox
-    Friend WithEvents ComboBox6 As System.Windows.Forms.ComboBox
-    Friend WithEvents ComboBox5 As System.Windows.Forms.ComboBox
-    Friend WithEvents ComboBox4 As System.Windows.Forms.ComboBox
-    Friend WithEvents ComboBox3 As System.Windows.Forms.ComboBox
-    Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
     Friend WithEvents Column6 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -1887,12 +1826,6 @@ Partial Class FormCMMF
     Friend WithEvents ComboBox10 As System.Windows.Forms.ComboBox
     Friend WithEvents DataGridView3 As System.Windows.Forms.DataGridView
     Friend WithEvents Column9 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Button7 As System.Windows.Forms.Button
-    Friend WithEvents Button6 As System.Windows.Forms.Button
-    Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -1902,4 +1835,13 @@ Partial Class FormCMMF
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents DeleteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TextBox45 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox47 As System.Windows.Forms.TextBox
+    Friend WithEvents Button8 As System.Windows.Forms.Button
+    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
+    Friend WithEvents TextBox48 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox49 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox51 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox50 As System.Windows.Forms.TextBox
+    Friend WithEvents ToolStripButton3 As System.Windows.Forms.ToolStripButton
 End Class
