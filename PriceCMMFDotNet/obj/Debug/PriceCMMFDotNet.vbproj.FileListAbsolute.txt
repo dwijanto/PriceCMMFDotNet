@@ -36,3 +36,5 @@ C:\Users\dlie\Documents\GitHub\PriceCMMFDotNet\PriceCMMFDotNet\obj\Debug\PriceCM
 C:\Users\dlie\Documents\GitHub\PriceCMMFDotNet\PriceCMMFDotNet\obj\Debug\PriceCMMFDotNet.ProjectRangeHelper.resources
 C:\Users\dlie\Documents\GitHub\PriceCMMFDotNet\PriceCMMFDotNet\obj\Debug\PriceCMMFDotNet.DialogItemCreation.resources
 C:\Users\dlie\Documents\GitHub\PriceCMMFDotNet\PriceCMMFDotNet\obj\Debug\PriceCMMFDotNet.vbproj.ResolveComReference.cache
+C:\Users\dlie\Documents\GitHub\PriceCMMFDotNet\PriceCMMFDotNet\obj\Debug\PriceCMMFDotNet.FormRBS.resources
+C:\Users\dlie\Documents\GitHub\PriceCMMFDotNet\PriceCMMFDotNet\obj\Debug\PriceCMMFDotNet.FormRSBUFamily.resources

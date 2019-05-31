@@ -2,13 +2,22 @@
 Public Class PostgreSQLFactory
     Inherits DbFactory
 
-
-
-
     Private myadapter As NpgsqlDataAdapter
 
     Dim conninfo As New NpgsqlConnectionStringBuilder
 
+    Public Overrides ReadOnly Property GetUserName As String       
+        Get
+            conninfo.ConnectionString = ConnectionString
+            Return conninfo.UserName
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property GetPassword As String
+        Get
+            Return "admin"
+        End Get
+    End Property
     Public Overrides ReadOnly Property GetHostName As String
         Get
             conninfo.ConnectionString = ConnectionString

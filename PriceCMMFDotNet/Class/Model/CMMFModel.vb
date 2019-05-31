@@ -37,8 +37,15 @@ Public Class CMMFModel
         Return DataAccess.ExecuteNonQuery(sqlstr, CommandType.Text)
     End Function
 
+    Private Function GetSqlstrSUBFamily() As String
+        Dim sb As New StringBuilder
+        sb.Append("select '--Select From List--' as sbuname,0 as sbuid union all (Select s.sbuname::text,s.sbuid from sbu  s where pcmmf order by s.sbuname);")                                                                         'SBU
+        sb.Append("select '--Select From List--' as familyname,0 as familyid,0 as sbuid,'--Select From List--'::text as sbuname union all (Select distinct f.familyname::text,f.familyid,f.sbuid,s.sbuname::text from family f left join sbu s on s.sbuid = f.sbuid  where s.pcmmf order by f.familyname::text);")                                  'Family
+        Return sb.ToString
+    End Function
+
     Private Function GetSqlstr(ByVal criteria) As String
-        Dim sb As New StringBuilder 
+        Dim sb As New StringBuilder
         sb.Append(String.Format("SELECT  r.pcprojectid,p.projectname::text, c.cmmf, c.materialcode::text, ssm.ofsebid as ssmid,spm.ofsebid as spmid,ssm.officersebname::text AS ssm, spm.officersebname::text AS spm,sbu.sbuname::text,sbu.sbuid," &
                " c.familyid,f.familyname::text, c.pcrangeid,  r.rangename::text, NULL::unknown AS picture,  c.description::text,c.brandid, b.brandname::text, c.countries::text, c.voltage, c.power, " &
                " c.leadtime, c.qty20, c.qty40, c.qty40hq, c.moq,c.loadingcode::text, l.loadingname,c.pgid, pg.typeofitem, c.netprice,  c.contractno, c.length," &
@@ -96,6 +103,20 @@ Public Class CMMFModel
         Return True
     End Function
 
+    Public Function LoadDataSBUFamily(ByRef ds As DataSet) As Boolean
+        Dim sqlstr = GetSqlstrSUBFamily()
+        ds = DataAccess.GetDataSet(sqlstr, CommandType.Text, Nothing)
+        Dim rel As DataRelation
+        Dim hcol As DataColumn
+        Dim dcol As DataColumn
+        'create relation SBU Family
+        hcol = ds.Tables(0).Columns("sbuid") 'id in table header
+        dcol = ds.Tables(1).Columns("sbuid") 'headerid in table detail
+        rel = New DataRelation("hdrel-SBU", hcol, dcol)
+        ds.Relations.Add(rel)
+        Return True
+    End Function
+
     Public Function LoadData(ByRef DS As DataSet, ByVal criteria As String) As Boolean
         Dim sqlstr = GetSqlstr(criteria)
         DS = DataAccess.GetDataSet(sqlstr, CommandType.Text, Nothing)
@@ -144,6 +165,16 @@ Public Class CMMFModel
                   " left join vendor v on v.vendorcode = pc.vendorcode" &
                   " Union select vendorname::text,v.vendorcode,v.vendorcode::text || ' - ' || v.vendorname::text  from vendor v order by vendorname;")
 
+        ds = DataAccess.GetDataSet(sb.ToString, CommandType.Text, Nothing)
+        Return ds.Tables(0)
+    End Function
+
+    Public Function getVendorShortNameTable() As DataTable
+        Dim ds As New DataSet
+        Dim sb As New StringBuilder
+        sb.Append("select shortname from vendor v " &
+                  " inner join (select distinct vendorcode from pricelist) as pv on pv.vendorcode = v.vendorcode " &
+                  " where not (shortname isnull) order by shortname")
         ds = DataAccess.GetDataSet(sb.ToString, CommandType.Text, Nothing)
         Return ds.Tables(0)
     End Function

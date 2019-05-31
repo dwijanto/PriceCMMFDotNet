@@ -3,9 +3,6 @@
 Public Class SqlFactory
     Inherits DbFactory
 
-
-
-
     Private myadapter As SqlDataAdapter
 
     Public Overrides ReadOnly Property ConnectionString As String
@@ -104,4 +101,16 @@ Public Class SqlFactory
         parm.Direction = paramInputOutput
         Return parm
     End Function
+
+    Public Overrides ReadOnly Property GetPassword As String
+        Get
+            Return Nothing
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property GetUserName As String
+        Get
+            Return Nothing
+        End Get
+    End Property
 End Class

@@ -82,14 +82,17 @@
     <Compile Include="Class\Controller\CMMFController.vb" />
     <Compile Include="Class\Controller\UserController.vb" />
     <Compile Include="Class\Controller\VendorController.vb" />
+    <Compile Include="Class\GenerateReport.vb" />
     <Compile Include="Class\Interface\IActiveRecord.vb" />
     <Compile Include="Class\Interface\IController.vb" />
     <Compile Include="Class\Interface\IModel.vb" />
     <Compile Include="Class\Interface\IToolbarAction.vb" />
     <Compile Include="Class\ItemCreation.vb" />
     <Compile Include="Class\Model\CMMFModel.vb" />
+    <Compile Include="Class\Model\GenerateReportModel.vb" />
     <Compile Include="Class\Model\UserModel.vb" />
     <Compile Include="Class\Model\VendorModel.vb" />
+    <Compile Include="Class\QueryWorkSheet.vb" />
     <Compile Include="Class\RBAC\Assignment.vb" />
     <Compile Include="Class\RBAC\BaseManager.vb" />
     <Compile Include="Class\RBAC\DbManager.vb" />
@@ -123,6 +126,18 @@
       <DependentUpon>FormCMMF.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\FormCMMF.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormRBS.Designer.vb">
+      <DependentUpon>FormRBS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormRBS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormRSBUFamily.Designer.vb">
+      <DependentUpon>FormRSBUFamily.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormRSBUFamily.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\ProjectRangeHelper.Designer.vb">
@@ -159,6 +174,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormCMMF.resx">
       <DependentUpon>FormCMMF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormRBS.resx">
+      <DependentUpon>FormRBS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormRSBUFamily.resx">
+      <DependentUpon>FormRSBUFamily.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\ProjectRangeHelper.resx">
       <DependentUpon>ProjectRangeHelper.vb</DependentUpon>

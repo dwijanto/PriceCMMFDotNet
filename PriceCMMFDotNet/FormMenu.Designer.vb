@@ -26,6 +26,9 @@ Partial Class FormMenu
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.TransactionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CMMFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportingBySupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReportingBySBUToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -39,7 +42,7 @@ Partial Class FormMenu
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TransactionToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TransactionToolStripMenuItem, Me.ReportToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(629, 24)
@@ -56,8 +59,27 @@ Partial Class FormMenu
         'CMMFToolStripMenuItem
         '
         Me.CMMFToolStripMenuItem.Name = "CMMFToolStripMenuItem"
-        Me.CMMFToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CMMFToolStripMenuItem.Size = New System.Drawing.Size(110, 22)
         Me.CMMFToolStripMenuItem.Text = "CMMF"
+        '
+        'ReportToolStripMenuItem
+        '
+        Me.ReportToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportingBySupplierToolStripMenuItem, Me.ReportingBySBUToolStripMenuItem})
+        Me.ReportToolStripMenuItem.Name = "ReportToolStripMenuItem"
+        Me.ReportToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
+        Me.ReportToolStripMenuItem.Text = "Reports"
+        '
+        'ReportingBySupplierToolStripMenuItem
+        '
+        Me.ReportingBySupplierToolStripMenuItem.Name = "ReportingBySupplierToolStripMenuItem"
+        Me.ReportingBySupplierToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
+        Me.ReportingBySupplierToolStripMenuItem.Text = "Reporting by Supplier"
+        '
+        'ReportingBySBUToolStripMenuItem
+        '
+        Me.ReportingBySBUToolStripMenuItem.Name = "ReportingBySBUToolStripMenuItem"
+        Me.ReportingBySBUToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
+        Me.ReportingBySBUToolStripMenuItem.Text = "Reporting by SBU"
         '
         'FormMenu
         '
@@ -79,5 +101,8 @@ Partial Class FormMenu
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents TransactionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CMMFToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReportingBySupplierToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReportingBySBUToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

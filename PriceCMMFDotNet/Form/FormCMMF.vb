@@ -95,7 +95,6 @@ Public Class FormCMMF
                         'myController.PriceCMMFSBUBS = New BindingSource
                         'myController.PriceCMMFSBUBS.DataSource = myController.DS.Tables(1)
                         'myController.PriceCMMFFamilyBS = New BindingSource
-
                         'myController.PriceCMMFFamilyBS.DataSource = myController.PriceCMMFSBUBS 'myController.DS.Tables(2)
                         'myController.PriceCMMFFamilyBS.DataMember = "hdrel-SBU"
 

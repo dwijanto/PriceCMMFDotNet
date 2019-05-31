@@ -16,6 +16,18 @@ Public Class DataAccess
         End Get
     End Property
 
+    Public Shared ReadOnly Property GetUserName
+        Get
+            Return factory.GetUserName
+        End Get
+    End Property
+
+    Public Shared ReadOnly Property GetPassword
+        Get
+            Return factory.GetPassword
+        End Get
+    End Property
+
     Public Shared Function ExecuteNonQuery(ByVal procedureName As String, ByVal cmdType As CommandType, ByVal ParamArray parameters() As IDbDataParameter) As Integer
         Debug.Assert(procedureName <> Nothing)
         Dim myret As Object = Nothing
@@ -74,6 +86,29 @@ Public Class DataAccess
             End If
             DataAdapter.Fill(DS)          
             Return DS
+        End Using
+    End Function
+
+    Public Shared Function GetDataTable(ByVal procedureName As String, ByVal cmdType As CommandType, ByVal ParamArray parameters() As IDbDataParameter) As DataTable
+        Dim DS As DataSet = New DataSet
+        Debug.Assert(procedureName <> Nothing)
+
+        Using connection As IDbConnection = factory.CreateConnection()
+            Dim DataAdapter As IDbDataAdapter = factory.CreateAdapter
+            connection.Open()
+            Dim command As IDbCommand = factory.CreateCommand(procedureName, connection)
+            command.Connection = connection
+            command.CommandType = cmdType
+            DataAdapter.SelectCommand = command
+
+            If (Not IsNothing(parameters)) Then
+                Dim p As IDbDataParameter
+                For Each p In parameters
+                    command.Parameters.Add(p)
+                Next
+            End If
+            DataAdapter.Fill(DS)
+            Return DS.Tables(0)
         End Using
     End Function
 

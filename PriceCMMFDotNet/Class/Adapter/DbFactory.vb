@@ -40,6 +40,8 @@
     Public MustOverride ReadOnly Property ConnectionString() As String
     Public MustOverride ReadOnly Property GetHostName As String
     Public MustOverride ReadOnly Property GetDataBaseName As String
+    Public MustOverride ReadOnly Property GetUserName As String
+    Public MustOverride ReadOnly Property GetPassword As String
 End Class
 
 'Public Delegate Sub WriteEventHandler(Of T)(ByVal o As T, ByVal command As IDbCommand)
