@@ -19,4 +19,9 @@
         Dim myform As New FormRSBUFamily
         myform.Show()
     End Sub
+
+    Private Sub ReportingBySSMSPMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportingBySSMSPMToolStripMenuItem.Click
+        Dim myform As New FormRSSMSupplier
+        myform.Show()
+    End Sub
 End Class

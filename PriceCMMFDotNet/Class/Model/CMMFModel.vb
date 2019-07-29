@@ -44,6 +44,13 @@ Public Class CMMFModel
         Return sb.ToString
     End Function
 
+    Private Function GetSqlstrSSMSupplier() As String
+        Dim sb As New StringBuilder
+        sb.Append("with ssm as (select distinct ssmid from pcproject) select ssm.ssmid,o.officersebname  from ssm left join officerseb o on o.ofsebid = ssm.ssmid order by officersebname;")                                                                         'SBU
+        sb.Append("select distinct v.shortname::character varying,v.vendorcode,ssmid from pcproject p left join pcrange r on r.pcprojectid = p.pcprojectid left join pccmmf c on c.pcrangeid = r.pcrangeid left join pricelist pl on pl.cmmf = c.cmmf left join vendor v on v.vendorcode = pl.vendorcode where not shortname isnull order by shortname;")                                  'Family
+        Return sb.ToString
+    End Function
+
     Private Function GetSqlstr(ByVal criteria) As String
         Dim sb As New StringBuilder
         sb.Append(String.Format("SELECT  r.pcprojectid,p.projectname::text, c.cmmf, c.materialcode::text, ssm.ofsebid as ssmid,spm.ofsebid as spmid,ssm.officersebname::text AS ssm, spm.officersebname::text AS spm,sbu.sbuname::text,sbu.sbuid," &
@@ -100,6 +107,20 @@ Public Class CMMFModel
         DS = DataAccess.GetDataSet(sqlstr, CommandType.Text, Nothing)
         DS.Tables(0).TableName = TableName
 
+        Return True
+    End Function
+
+    Public Function LoadDataSSMSupplier(ByRef ds As DataSet) As Boolean
+        Dim sqlstr = GetSqlstrSSMSupplier()
+        ds = DataAccess.GetDataSet(sqlstr, CommandType.Text, Nothing)
+        Dim rel As DataRelation
+        Dim hcol As DataColumn
+        Dim dcol As DataColumn
+        'create relation SBU Family
+        hcol = ds.Tables(0).Columns("ssmid") 'id in table header
+        dcol = ds.Tables(1).Columns("ssmid") 'headerid in table detail
+        rel = New DataRelation("hdrel-SSM", hcol, dcol)
+        ds.Relations.Add(rel)
         Return True
     End Function
 

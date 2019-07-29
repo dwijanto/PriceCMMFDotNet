@@ -783,7 +783,7 @@ Partial Class FormCMMF
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(936, 332)
+        Me.TabPage2.Size = New System.Drawing.Size(936, 333)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Product"
         Me.TabPage2.UseVisualStyleBackColor = True

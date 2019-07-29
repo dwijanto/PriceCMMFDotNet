@@ -140,6 +140,12 @@
     <Compile Include="Form\FormRSBUFamily.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\FormRSSMSupplier.Designer.vb">
+      <DependentUpon>FormRSSMSupplier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormRSSMSupplier.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\ProjectRangeHelper.Designer.vb">
       <DependentUpon>ProjectRangeHelper.vb</DependentUpon>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormRSBUFamily.resx">
       <DependentUpon>FormRSBUFamily.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormRSSMSupplier.resx">
+      <DependentUpon>FormRSSMSupplier.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\ProjectRangeHelper.resx">
       <DependentUpon>ProjectRangeHelper.vb</DependentUpon>
